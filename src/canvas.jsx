@@ -72,6 +72,7 @@ const independence = (data) => {
     let CI = [];
     do {
       let degree = {};
+      for (let i = 0; i < nodes3.length; i++) degree[nodes3[i].id] = 0;
       for (let i = 0; i < edges3.length; i++) {
         if (degree[edges3[i].from]) degree[edges3[i].from]++;
         else degree[edges3[i].from] = 1;
@@ -90,7 +91,7 @@ const independence = (data) => {
       nodes3 = deleteNode(nodes3, min.node);
 
       for (let i = 0; i < edges3.length; i++) {
-        console.log(i, edges3[i].from, min.node,edges3[i].from == min.node);
+        //console.log(i, edges3[i].from, min.node, edges3[i].from == min.node);
         if (edges3[i].from == min.node) {
           //nodes = deleteNode(nodes, edges[i].to);
           edges3 = deleteEdge(edges3, edges3[i].from, edges3[i].to);
@@ -101,10 +102,12 @@ const independence = (data) => {
           i--;
         }
       }
-      if (k < 3) {
+      /*
+      if (k < 5) {
         passed = true;
       } else break;
       k++;
+      console.log(min.node, nodes3);*/
     } while (nodes3.length > 0);
     for (let i = 0; i < CI.length; i++) nodes2 = deleteNode(nodes2, CI[i]);
     break;
